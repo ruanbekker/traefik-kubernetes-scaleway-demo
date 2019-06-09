@@ -1,0 +1,99 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: openfaas
+  labels:
+    app: logo
+    logo: openfaas
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logo
+      task: openfaas
+  template:
+    metadata:
+      labels:
+        app: logo
+        task: openfaas
+        version: v0.0.1
+    spec:
+      containers:
+      - name: logo
+        image: ruanbekker/logos:openfaas
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - containerPort: 80
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: rancher
+  labels:
+    app: logo
+    logo: rancher
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logo
+      task: rancher
+  template:
+    metadata:
+      labels:
+        app: logo
+        task: rancher
+        version: v0.0.1
+    spec:
+      containers:
+      - name: logo
+        image: ruanbekker/logos:rancher
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - containerPort: 80
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: python
+  labels:
+    app: logo
+    logo: python
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logo
+      task: python
+  template:
+    metadata:
+      labels:
+        app: logo
+        task: python
+        version: v0.0.1
+    spec:
+      containers:
+      - name: logo
+        image: ruanbekker/logos:python
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - containerPort: 80
