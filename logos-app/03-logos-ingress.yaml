@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: logo
+spec:
+  rules:
+  - host: openfaas.x-x-x-x-x.nodes.k8s.fr-par.scw.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: openfaas
+          servicePort: http
+  - host: rancher.x-x-x-x-x.nodes.k8s.fr-par.scw.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rancher
+          servicePort: http
+  - host: python.x-x-x-x-x.nodes.k8s.fr-par.scw.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: python
+          servicePort: http
