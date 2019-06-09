@@ -3,7 +3,7 @@ Traefik as an Ingress Controller on Kubernetes
 
 ## Provision a Kapsule Cluster
 
-Have a look at the [provision a kapsule cluster on scaleway](#guides/README.md) guide if you have not provisioned the cluster.
+Have a look at the [provision a kapsule cluster on scaleway](guide/README.md) guide if you have not provisioned the cluster.
 
 ## Provision Traefik as an Ingress Controller
 
