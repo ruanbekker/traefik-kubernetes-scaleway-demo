@@ -1,23 +1,48 @@
 # traefik-kubernetes-scaleway-demo
 Traefik as an Ingress Controller on Kubernetes
 
+![image](https://user-images.githubusercontent.com/567298/59177864-a5b78d00-8b5d-11e9-931c-5b5dd4e81805.png)
+
+
+## TOC
+
+- [Provision a Kapsule Cluster](#guide/README.md)
+- [Provision Traefik as an Ingress Controller](#provision-traefik-as-an-ingress-controller)
+- [Deploy the Logo App to the Cluster](#deploy-the-logo-app-to-the-cluster)
+- [Navigating with Kubectl](#navigating-with-kubectl)
+- [Access your Applications](#access-your-applications)
+
+## About
+
+At this time of writing (2019.06.10) Scaleway
+
 ## Provision a Kapsule Cluster
 
 Have a look at the [provision a kapsule cluster on scaleway](guide/README.md) guide if you have not provisioned the cluster.
 
 ## Provision Traefik as an Ingress Controller
 
+Apply role based access control to authorize Traefik to use the Kubernetes API:
+
 ```
 $ kubectl apply -f traefik/01-traefik-rbac.yaml
 clusterrole.rbac.authorization.k8s.io/traefik-ingress-controller created
 clusterrolebinding.rbac.authorization.k8s.io/traefik-ingress-controller created
 ```
+
+We will apply a Deployment and a Daemonset [more details on why](https://docs.traefik.io/user-guide/kubernetes/#deploy-traefik-using-a-deployment-or-daemonset)
+
+Apply the deployment:
+
 ```
 $ kubectl apply -f traefik/02-traefik-deployment.yaml
 serviceaccount/traefik-ingress-controller created
 deployment.extensions/traefik-ingress-controller created
 service/traefik-ingress-service created
 ```
+
+Apply Daemon Set:
+
 ```
 $ kubectl apply -f traefik/03-traefik-ds.yaml
 serviceaccount/traefik-ingress-controller unchanged
@@ -26,33 +51,33 @@ The Service "traefik-ingress-service" is invalid:
 * spec.ports[0].nodePort: Forbidden: may not be used when `type` is 'ClusterIP'
 * spec.ports[1].nodePort: Forbidden: may not be used when `type` is 'ClusterIP'
 ```
+
+I ran into the issue above, the way I resolved it was:
+
 ```
 $ kubectl replace -f traefik/03-traefik-ds.yaml
-serviceaccount/traefik-ingress-controller replaced
-daemonset.extensions/traefik-ingress-controller replaced
-The Service "traefik-ingress-service" is invalid: spec.clusterIP: Invalid value: "": field is immutable
-```
-```
 $ kubectl delete -f traefik/03-traefik-ds.yaml
-serviceaccount "traefik-ingress-controller" deleted
-daemonset.extensions "traefik-ingress-controller" deleted
-service "traefik-ingress-service" deleted
-```
-```
 $ kubectl apply -f traefik/03-traefik-ds.yaml
 serviceaccount/traefik-ingress-controller created
-kubectl create deploy nginx2 --image nginx
 daemonset.extensions/traefik-ingress-controller created
 service/traefik-ingress-service created
 ```
+
+Traefik UI Service:
+
 ```
 $ kubectl apply -f traefik/04-traefik-ui.yaml
 service/traefik-web-ui created
 ```
+
+Traefik UI Ingress:
+
 ```
 $ kubectl apply -f traefik/05-traefik-ui-ingress.yaml
 ingress.extensions/traefik-web-ui created
 ```
+
+View the services:
 
 ```
 $ kubectl get services --namespace=kube-system
