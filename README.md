@@ -160,10 +160,6 @@ Show Pods:
 ```
 $ kubectl get pods
 NAME                                     READY   STATUS    RESTARTS   AGE
-nginx-755464dd6c-28xnb                   1/1     Running   0          19h
-nginx-755464dd6c-6h5xm                   1/1     Running   0          19h
-nginx-755464dd6c-xg29p                   1/1     Running   0          19h
-nginx2-7c55f68548-qcxsz                  1/1     Running   0          19h
 openfaas-cffdddc4-lvn5w                  1/1     Running   0          9h
 openfaas-cffdddc4-wbcl6                  1/1     Running   0          9h
 python-65ccf9c74b-8kmgp                  1/1     Running   0          9h
@@ -176,12 +172,10 @@ Show deployments:
 
 ```
 $ kubectl get deployments -o wide
-NAME                    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS              IMAGES                      SELECTOR
-nginx                   3/3     3            3           19h   nginx                   nginx                       run=nginx
-nginx2                  1/1     1            1           19h   nginx                   nginx                       app=nginx2
-openfaas                2/2     2            2           9h    logo                    ruanbekker/logos:openfaas   app=logo,task=openfaas
-python                  2/2     2            2           9h    logo                    ruanbekker/logos:python     app=logo,task=python
-rancher                 2/2     2            2           9h    logo                    ruanbekker/logos:rancher    app=logo,task=rancher
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS  IMAGES                      SELECTOR
+openfaas                2/2     2            2           9h    logo        ruanbekker/logos:openfaas   app=logo,task=openfaas
+python                  2/2     2            2           9h    logo        ruanbekker/logos:python     app=logo,task=python
+rancher                 2/2     2            2           9h    logo        ruanbekker/logos:rancher    app=logo,task=rancher
 ```
 
 Show ingress:
