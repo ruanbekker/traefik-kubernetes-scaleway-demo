@@ -68,7 +68,21 @@ daemonset.extensions/traefik-ingress-controller created
 service/traefik-ingress-service created
 ```
 
-Traefik UI Service:
+The Traefik UI Service will be associated with a FQDN, remember to set the FQDN for the endpoint, as example:
+
+```
+$ cat traefik/04-traefik-ui.yaml
+...
+spec:
+  rules:
+  - host: traefik-ui.x-x-x-x-x.nodes.k8s.fr-par.scw.cloud
+    http:
+      paths:
+      - path: /
+...
+```
+
+Create the Traefik UI Service:
 
 ```
 $ kubectl apply -f traefik/04-traefik-ui.yaml
