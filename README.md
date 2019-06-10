@@ -99,3 +99,73 @@ python-65ccf9c74b-dgnqb                  1/1     Running   0          4m6s
 rancher-597b6b8554-mgcjr                 1/1     Running   0          4m6s
 rancher-597b6b8554-mpk62                 1/1     Running   0          4m6s
 ```
+
+## Navigating with Kubectl
+
+Show nodes:
+
+```
+$ kubectl get nodes
+NAME                                             STATUS   ROLES    AGE   VERSION
+scw-k8s-mystifying-torvald-jovial-mclar-25a942   Ready    node     20h   v1.14.1
+scw-k8s-mystifying-torvald-jovial-mclar-eaf1a2   Ready    node     20h   v1.14.1
+scw-k8s-mystifying-torvalds-default-7f263aabab   Ready    master   20h   v1.14.1
+```
+
+Show services:
+
+```
+$ kubectl get services
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE
+kubernetes              ClusterIP   10.32.0.1      <none>        443/TCP           20h
+openfaas                ClusterIP   10.41.47.185   <none>        80/TCP            9h
+python                  ClusterIP   10.42.56.141   <none>        80/TCP            9h
+rancher                 ClusterIP   10.32.41.218   <none>        80/TCP            9h
+```
+
+Show Pods:
+
+*To see pods from the kube-system namespace add -n kube-system*
+
+```
+$ kubectl get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+nginx-755464dd6c-28xnb                   1/1     Running   0          19h
+nginx-755464dd6c-6h5xm                   1/1     Running   0          19h
+nginx-755464dd6c-xg29p                   1/1     Running   0          19h
+nginx2-7c55f68548-qcxsz                  1/1     Running   0          19h
+openfaas-cffdddc4-lvn5w                  1/1     Running   0          9h
+openfaas-cffdddc4-wbcl6                  1/1     Running   0          9h
+python-65ccf9c74b-8kmgp                  1/1     Running   0          9h
+python-65ccf9c74b-dgnqb                  1/1     Running   0          9h
+rancher-597b6b8554-mgcjr                 1/1     Running   0          9h
+rancher-597b6b8554-mpk62                 1/1     Running   0          9h
+```
+
+Show deployments:
+
+```
+$ kubectl get deployments -o wide
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS              IMAGES                      SELECTOR
+nginx                   3/3     3            3           19h   nginx                   nginx                       run=nginx
+nginx2                  1/1     1            1           19h   nginx                   nginx                       app=nginx2
+openfaas                2/2     2            2           9h    logo                    ruanbekker/logos:openfaas   app=logo,task=openfaas
+python                  2/2     2            2           9h    logo                    ruanbekker/logos:python     app=logo,task=python
+rancher                 2/2     2            2           9h    logo                    ruanbekker/logos:rancher    app=logo,task=rancher
+```
+
+Show ingress:
+
+```
+$ kubectl get ingress -o wide
+NAME      HOSTS                                                          ADDRESS   PORTS   AGE
+logo      openfaas.domain.com,rancher.domain.com,python.domain.com       80      9h
+```
+
+Show system ingress:
+
+```
+$ kubectl get ingress -o wide -n kube-system
+NAME             HOSTS                     ADDRESS   PORTS   AGE
+traefik-web-ui   traefik-ui.domain.com               80      9h
+```
