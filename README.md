@@ -14,7 +14,12 @@ Traefik as an Ingress Controller on Kubernetes
 
 ## About
 
-At this time of writing (2019.06.10) Scaleway
+At this time of writing (2019.06.10) Scaleway's Kubernetes as a Service, named Kapsule is in Private Beta and got access and pretty stoked on how easy it is to provision a Kubernetes cluster.
+
+In this repo I will demonstrate how to:
+- Provision a Cluster
+- Deploy Traefik as an Ingress Controller
+- Deploy a Logo's App and associate it with Traefik
 
 ## Provision a Kapsule Cluster
 
