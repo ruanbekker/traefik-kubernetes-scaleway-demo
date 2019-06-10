@@ -169,3 +169,15 @@ $ kubectl get ingress -o wide -n kube-system
 NAME             HOSTS                     ADDRESS   PORTS   AGE
 traefik-web-ui   traefik-ui.domain.com               80      9h
 ```
+
+## Access your Applications
+
+Access the Traefik-UI, and filter for one of the applications. Let's take OpenFaaS for an example:
+
+![image](https://user-images.githubusercontent.com/567298/59177432-63418080-8b5c-11e9-8e54-20600508e510.png)
+
+Access the OpenFaaS Page via the URL:
+
+![image](https://user-images.githubusercontent.com/567298/59177206-a4856080-8b5b-11e9-8954-238590f18e5c.png)
+
+
