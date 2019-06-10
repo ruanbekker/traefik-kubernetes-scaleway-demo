@@ -6,7 +6,7 @@ Traefik as an Ingress Controller on Kubernetes
 
 ## TOC
 
-- [Provision a Kapsule Cluster](#guide/README.md)
+- [Provision a Kapsule Cluster](guide/README.md)
 - [Provision Traefik as an Ingress Controller](#provision-traefik-as-an-ingress-controller)
 - [Deploy the Logo App to the Cluster](#deploy-the-logo-app-to-the-cluster)
 - [Navigating with Kubectl](#navigating-with-kubectl)
