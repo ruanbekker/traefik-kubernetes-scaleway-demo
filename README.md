@@ -65,3 +65,37 @@ monitoring-influxdb       ClusterIP   x.x.x.x         <none>        8086/TCP    
 traefik-ingress-service   ClusterIP   x.x.x.x         <none>        80/TCP,8080/TCP          24m
 traefik-web-ui            ClusterIP   x.x.x.x         <none>        80/TCP                   24m
 ```
+
+## Deploy the Logo App to the Cluster
+
+We will deploy the logo app to our cluster:
+
+```
+$ kubectl apply -f logos-services.yaml
+service/openfaas created
+service/rancher created
+service/python created
+```
+
+```
+$ kubectl apply -f logos-deployments.yaml
+deployment.extensions/openfaas created
+deployment.extensions/rancher created
+deployment.extensions/python created
+```
+
+```
+$ kubectl apply -f logos-ingress.yaml
+ingress.extensions/logo created
+```
+
+```
+$ kubectl get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+openfaas-cffdddc4-lvn5w                  1/1     Running   0          4m6s
+openfaas-cffdddc4-wbcl6                  1/1     Running   0          4m6s
+python-65ccf9c74b-8kmgp                  1/1     Running   0          4m6s
+python-65ccf9c74b-dgnqb                  1/1     Running   0          4m6s
+rancher-597b6b8554-mgcjr                 1/1     Running   0          4m6s
+rancher-597b6b8554-mpk62                 1/1     Running   0          4m6s
+```
