@@ -71,21 +71,21 @@ traefik-web-ui            ClusterIP   x.x.x.x         <none>        80/TCP      
 We will deploy the logo app to our cluster:
 
 ```
-$ kubectl apply -f logos-services.yaml
+$ kubectl apply -f logos-app/logos-services.yaml
 service/openfaas created
 service/rancher created
 service/python created
 ```
 
 ```
-$ kubectl apply -f logos-deployments.yaml
+$ kubectl apply -f logos-app/logos-deployments.yaml
 deployment.extensions/openfaas created
 deployment.extensions/rancher created
 deployment.extensions/python created
 ```
 
 ```
-$ kubectl apply -f logos-ingress.yaml
+$ kubectl apply -f logos-app/logos-ingress.yaml
 ingress.extensions/logo created
 ```
 
