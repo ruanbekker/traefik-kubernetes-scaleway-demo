@@ -4,7 +4,11 @@ Head over to Kapsule and provision a Kubernetes Cluster
 
 ![image](https://user-images.githubusercontent.com/567298/59164353-e71f4c80-8b0b-11e9-8f5c-7c65db1af7b2.png)
 
-After the cluster has been provisioned, select the cluster and scroll down to download your config:
+After the cluster has been provisioned, you will get information about your endpoints from the Cluster Infromation Section, which we will need for our ingresses:
+
+![image](https://user-images.githubusercontent.com/567298/59180685-df8c9180-8b65-11e9-82aa-05ee3cd42c78.png)
+
+Scroll down to download your config:
 
 ![image](https://user-images.githubusercontent.com/567298/59164356-f56d6880-8b0b-11e9-8c00-34dff0ba61fb.png)
 
