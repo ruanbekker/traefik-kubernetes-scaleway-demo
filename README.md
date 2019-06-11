@@ -35,33 +35,11 @@ clusterrole.rbac.authorization.k8s.io/traefik-ingress-controller created
 clusterrolebinding.rbac.authorization.k8s.io/traefik-ingress-controller created
 ```
 
-We will apply a Deployment and a Daemonset [more details on why](https://docs.traefik.io/user-guide/kubernetes/#deploy-traefik-using-a-deployment-or-daemonset)
+You can apply a Deployment or a Daemonset [see more details on why](https://docs.traefik.io/user-guide/kubernetes/#deploy-traefik-using-a-deployment-or-daemonset)
 
-Apply the deployment:
-
-```
-$ kubectl apply -f traefik/02-traefik-deployment.yaml
-serviceaccount/traefik-ingress-controller created
-deployment.extensions/traefik-ingress-controller created
-service/traefik-ingress-service created
-```
-
-Apply Daemon Set:
+I will be applying a Daemon Set:
 
 ```
-$ kubectl apply -f traefik/03-traefik-ds.yaml
-serviceaccount/traefik-ingress-controller unchanged
-daemonset.extensions/traefik-ingress-controller created
-The Service "traefik-ingress-service" is invalid:
-* spec.ports[0].nodePort: Forbidden: may not be used when `type` is 'ClusterIP'
-* spec.ports[1].nodePort: Forbidden: may not be used when `type` is 'ClusterIP'
-```
-
-I ran into the issue above, the way I resolved it was:
-
-```
-$ kubectl replace -f traefik/03-traefik-ds.yaml
-$ kubectl delete -f traefik/03-traefik-ds.yaml
 $ kubectl apply -f traefik/03-traefik-ds.yaml
 serviceaccount/traefik-ingress-controller created
 daemonset.extensions/traefik-ingress-controller created
