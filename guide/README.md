@@ -44,28 +44,4 @@ scw-k8s-mystifying-torvald-jovial-mclar-eaf1a2   Ready     <none>    2m        v
 scw-k8s-mystifying-torvalds-default-7f263aabab   Ready     <none>    15m       v1.14.1
 ```
 
-## Label the nodes
-
-Label the nodes as following:
-
-```
-$ kubectl label node scw-k8s-mystifying-torvalds-default-7f263aabab node-role.kubernetes.io/master=""
-node "scw-k8s-mystifying-torvalds-default-7f263aabab" labeled
-
-$ kubectl label node scw-k8s-mystifying-torvald-jovial-mclar-eaf1a2 node-role.kubernetes.io/node=""
-node "scw-k8s-mystifying-torvald-jovial-mclar-eaf1a2" labeled
-
-$ kubectl label node scw-k8s-mystifying-torvald-jovial-mclar-25a942 node-role.kubernetes.io/node=""
-node "scw-k8s-mystifying-torvald-jovial-mclar-25a942" labeled
-```
-
-Now when we inspect the nodes, they will be labeled:
-
-```
-$ kubectl get nodes
-NAME                                             STATUS    ROLES     AGE       VERSION
-scw-k8s-mystifying-torvald-jovial-mclar-25a942   Ready     node      5m        v1.14.1
-scw-k8s-mystifying-torvald-jovial-mclar-eaf1a2   Ready     node      5m        v1.14.1
-scw-k8s-mystifying-torvalds-default-7f263aabab   Ready     master    17m       v1.14.1
-```
-
+Note: You don't need to set the node roles as Scaleway manages the Master nodes for you, and the nodes that you see are all worker nodes.
