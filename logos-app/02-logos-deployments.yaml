@@ -1,6 +1,6 @@
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: openfaas
   labels:
@@ -33,7 +33,7 @@ spec:
         - containerPort: 80
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: rancher
   labels:
@@ -66,7 +66,7 @@ spec:
         - containerPort: 80
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: python
   labels:
